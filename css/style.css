@@ -1,14 +1,13 @@
 /* style.css */
-/* Root colors and typography */
 :root {
-    --primary: #009688;
-    --primary-dark: #00695c;
-    --secondary: #ff9800;
-    --text: #333;
-    --bg: #f9fafb;
-    --white: #fff;
+    --primary: #FFBE0B;
+    --primary-dark: #E6A70A;
+    --secondary: #FB5607;
+    --accent: #FF006E;
+    --text: #2C3E50;
+    --bg: #F9FAFB;
     --max-width: 1200px;
-    --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Be Vietnam Pro', Arial, sans-serif;
 }
 
 * {
@@ -53,6 +52,17 @@ a.btn-primary:hover {
     background: var(--primary-dark);
 }
 
+a.nav-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+a.nav-link:hover {
+    color: var(--primary);
+}
+
 /* Layout utilities */
 .container {
     max-width: var(--max-width);
@@ -68,9 +78,17 @@ a.btn-primary:hover {
     min-height: 80vh;
     padding: 2rem 0;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background-size: 400% 400%;
     color: var(--white);
     position: relative;
     overflow: hidden;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-content {
@@ -139,6 +157,7 @@ a.btn-primary:hover {
 .section h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
+    color: var(--primary-dark);
 }
 
 .cards {
@@ -149,25 +168,28 @@ a.btn-primary:hover {
     margin: 0 auto;
 }
 
-    .card {
-        background: var(--white);
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        padding: 1.5rem;
-        transition: transform 0.3s, box-shadow 0.3s;
-        perspective: 500px;
-        transform-style: preserve-3d;
-    }
-    .card img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
+.card {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    perspective: 500px;
+    transform-style: preserve-3d;
+}
 
 .card:hover {
-    transform: translateY(-8px) rotateY(5deg);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+    border-radius: 0.75rem 0.75rem 0 0;
 }
 
 footer {
@@ -184,5 +206,11 @@ footer {
     }
     .cube-wrapper {
         margin-top: 2rem;
+    }
+    .nav-links {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
     }
 }
