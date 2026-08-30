@@ -18,6 +18,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Fix broken images – replace with a placeholder when they fail to load
+    const fixBrokenImages = () => {
+        const imgs = document.querySelectorAll('.card img');
+        const placeholder = 'https://via.placeholder.com/600x400?text=No+Image';
+        imgs.forEach(img => {
+            img.onerror = () => {
+                img.src = placeholder;
+                img.alt = 'Image unavailable';
+            };
+        });
+    };
+
     // Reveal-on-scroll for sections
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(
@@ -31,4 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { threshold: 0.1 }
     );
     reveals.forEach(el => observer.observe(el));
+
+    // Run the image fixer
+    fixBrokenImages();
 });
